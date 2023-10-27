@@ -8,13 +8,13 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v2
         with:
           python-version: "3.11"
-      - uses: pre-commit install
-      - uses: pre-commit run --all-files
+      - run: pre-commit install
+      - run: pre-commit run --all-files
 
   tests:
     runs-on: ubuntu-latest
@@ -22,9 +22,9 @@ jobs:
       matrix:
         python-version: [3.8,3.12]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v2
         with:
           python-version: ${{matrix.python-version}}
 
