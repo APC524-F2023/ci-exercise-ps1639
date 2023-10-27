@@ -8,3 +8,4 @@
 #fixed test_stdunc.py to have one new line at the end
 
 #added fix = true to tool.ruff in pyproject to fix a formatting issue
+#added "--fix" arg to pre-commit file
