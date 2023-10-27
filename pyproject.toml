@@ -1,0 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unc"
+version = "3.11.6"
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "uncertainties"
+]
