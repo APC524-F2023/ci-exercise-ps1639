@@ -7,4 +7,4 @@
 #added new line at the end of CHANGELOG file
 #fixed test_stdunc.py to have one new line at the end
 
-#changed test_stdunc.py import statements to comply with ruff
+#added fix = true to tool.ruff in pyproject to fix a formatting issue
