@@ -14,4 +14,5 @@ test = [
 ]
 
 [tool.ruff]
-select = ["E,F,W,B,I,RUF,UP"]
+select = ["E", "F", "W", "B", "I", "RUF", "UP"]
+fix = true
