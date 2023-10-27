@@ -5,15 +5,16 @@ from typing import Any, TypeVar
 
 Self = TypeVar("Self", bound="LabUnc")
 
+
 class LabUnc:
     @staticmethod
     def combine(a: float, b: float) -> float:
         return a + b
-    
-    rounding_rule = 1.0
-    "This is the number to round at for display, lab rule is 1, particle physics uses 3.54"
 
-    def __init__(self, number: float, uncertainty: float = 0.0 ) -> None:
+    rounding_rule = 1.0
+    "no. to round at, lab rule is 1, particle physics uses 3.54"
+
+    def __init__(self, number: float, uncertainty: float = 0.0) -> None:
         self.n = number
         self.s = abs(uncertainty)
 
@@ -37,20 +38,21 @@ class LabUnc:
         return f"{self.n:0.{self.ndigits}f} ± {self.s:0.{self.ndigits}f}"
 
     def __eq__(self, other: Any) -> bool:
-        return abs(self.n - other.n) < 0.0000001 and abs(self.s - other.s) < 0.0000001
+        eps = 0.0000001
+        return abs(self.n - other.n) < eps and abs(self.s - other.s) < eps
 
-    def __add__(self: Self, other: "LabUnc") -> Self:
+    def __add__(self: Self, other: LabUnc) -> Self:
         return self.__class__(self.n + other.n, self.combine(self.s, other.s))
 
-    def __sub__(self: Self, other: "LabUnc") -> Self:
+    def __sub__(self: Self, other: LabUnc) -> Self:
         return self.__class__(self.n - other.n, self.combine(self.s, other.s))
 
-    def __mul__(self: Self, other: "LabUnc") -> Self:
+    def __mul__(self: Self, other: LabUnc) -> Self:
         C = self.n * other.n
         δC = C * self.combine(self.s / self.n, other.s / other.n)
         return type(self)(C, δC)
 
-    def __truediv__(self: Self, other: "LabUnc") -> Self:
+    def __truediv__(self: Self, other: LabUnc) -> Self:
         C = self.n / other.n
         δC = C * self.combine(self.s / self.n, other.s / other.n)
         return self.__class__(C, δC)
