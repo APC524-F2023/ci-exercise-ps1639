@@ -15,5 +15,3 @@ repos:
     rev: v0.1.2
     hooks:
       -   id: ruff
-          args: ["--checks", "E,F,W,B,I,RUF,UP"]
-          files: '.*'
