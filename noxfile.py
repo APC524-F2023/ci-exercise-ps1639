@@ -3,8 +3,7 @@ import nox
 
 @nox.session
 def tests(session):
-    # Install the project using `pip` and include the `tests` extra.
-    session.install(".")
+    session.install("-e", ".[tests]")
+    session.install("pytest", "uncertainties")
 
-    # Run the tests using the `nox -s tests` command.
-    session.run("nox", "-s", "tests")
+    session.run("pytest")
